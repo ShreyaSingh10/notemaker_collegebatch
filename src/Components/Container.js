@@ -5,7 +5,7 @@ import Note from './Note';
 export default class Container extends React.Component {
 
 	state= {
-		notes:[]	
+		notes:[],
 	}
 
 	//function to add a new note
@@ -22,8 +22,22 @@ export default class Container extends React.Component {
 		})
 	}
 
+	//edit a note
+	editNote = (value, place) => {
+		console.log("VALUES", value, place);
+		const tempState = this.state;
+		const tempNote = this.state.notes[place];//place is the index of changed note
+		console.log("tempNote", tempNote);
+		tempNote.name = value; //after getting tempNote object we will update
+								// the value of it by using the key which is name
+		//dummy state
+		tempState.notes[place] = tempNote; //updating the array with new note object by the help index= place
+		this.setState({notes: tempState.notes})
+	}
+
+
 	render(){
-		//console.log("State", this.state);
+		console.log("State", this.state);
 		const { notes } = this.state;
 		return(
 			<div className="parent_container">
@@ -33,10 +47,12 @@ export default class Container extends React.Component {
 				/>
 				<div className="notes_container">
 					{
-						notes.map((note, place) => 
+						this.state.notes.map((note, place) => 
 							(
 								<Note
 									name={note.name}
+									place={place}
+									editNote={this.editNote}
 								/>
 							)
 						)
@@ -46,3 +62,9 @@ export default class Container extends React.Component {
 		)
 	}
 }
+
+
+//how child can communicate with parent??
+//1. make a function in parent
+//2. pass that function as a prop to child
+//3. call/use the fuunct with the req param
