@@ -18,13 +18,13 @@ export default class Note extends React.Component {
 	}
 
 	// smrandomfunc = () => {
-	// 	this.props.editNote(this.state.name, this.props.place);
+	// 	this.props.deleteNote(this.props.place);
 	// }
 
 	render() {
 		//console.log("STATE", this.state);
 		const {name} = this.state;
-		const {place, editNote} = this.props;
+		const {place, editNote, deleteNote} = this.props;
 		return(
 			<div>
 				<input
@@ -33,6 +33,7 @@ export default class Note extends React.Component {
 					onChange={this.handleChange}
 					onBlur={() => editNote(name,place)}
 				/>
+				<button onClick={() => deleteNote(place)}>X</button>
 			</div>
 		)
 	}
