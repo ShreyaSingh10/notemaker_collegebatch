@@ -1,6 +1,7 @@
 import React from 'react';
 import AddNote from './AddNote';
 import Note from './Note';
+import './styles.css';
 
 export default class Container extends React.Component {
 
@@ -10,6 +11,7 @@ export default class Container extends React.Component {
 
 	componentDidMount() {
 		let localNotes = localStorage.getItem('notes');
+		//first api call get api call
 		if(localNotes) {
 			this.setState({
 				notes: JSON.parse(localNotes)
@@ -31,7 +33,9 @@ export default class Container extends React.Component {
 				notes: newArr
 			};
 		})
+		//second api call- post in call back function
 	}
+
 
 	//function to edit a note
 	editNote = (value, place) => {
@@ -45,6 +49,7 @@ export default class Container extends React.Component {
 		tempState.notes[place] = tempNote; //updating the array with new note object by the help index= place
 		localStorage.setItem('notes', JSON.stringify(tempState.notes));
 		this.setState({notes: tempState.notes})
+		//third api call in call back function api-put,post
 	}
 
     //function to delete a note
@@ -59,6 +64,7 @@ export default class Container extends React.Component {
     			notes: newNotes
     		}
     	})
+    	//forth api call in call back function api-delete
     }
     
 	render(){

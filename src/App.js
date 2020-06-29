@@ -5,6 +5,9 @@ import Container from './Components/Container'; //import ur parent component int
 function App() {
   return (
     <div className="App">
+      <button className="btn btn-primary">Checking Bootstrap</button>
+      <button className="btn btn-danger">Checking Bootstrap</button>
+      <button className="btn btn-secondary">Checking Bootstrap</button>
       <Container/>
     </div>
   );
